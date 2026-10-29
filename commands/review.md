@@ -12,9 +12,12 @@ You are the dispatcher. The specialists run as subagents, and a subagent cannot 
 | a PR number | `gh pr diff <n>` | `gh pr diff <n> --name-only` |
 | `staged` | `git diff --cached` | `git diff --cached --name-only` |
 | a path | review the path as a whole | `git ls-files <path>` |
-| empty | `git diff origin/HEAD...HEAD` (fall back to `main...HEAD`) | same range with `--name-only` |
+| empty | `git diff <base>`: everything on this branch, committed or not | `git diff <base> --name-only`, plus untracked files from `git ls-files --others --exclude-standard` |
 
-Keep the exact command you used. Specialists rerun it themselves; never paste the diff into their prompts.
+`<base>` is `git merge-base origin/HEAD HEAD`; fall back to `origin/main`, then `main`. A branch with no commits yet still gets reviewed this way.
+
+Keep the exact command you used. Specialists rerun it themselves; never paste the diff into their prompts. Untracked files are in no diff: list them under Files marked `(new, untracked)` so specialists read them whole.
+Name the target so the report says what was reviewed, e.g. `fix/x (committed + uncommitted vs origin/main)`.
 Empty change set → say so in one line and stop.
 
 ## 2. Setup
@@ -38,7 +41,7 @@ Pick specialists from the file list:
 |---|---|
 | `review-correctness` | Any source file |
 | `review-code-quality` | Any source file |
-| `review-security` | Auth, session, middleware, API routes, handlers, controllers, server actions, env or config files, anything that renders user input as HTML |
+| `review-security` | Auth, session, middleware, API routes, server handlers or controllers, server actions, env or config files, anything that renders user input as HTML |
 | `review-performance` | Components, hooks, composables, data fetching, server handlers, DB queries, ORM models |
 | `review-api-contract` | API clients or services, route handlers or controllers, validation schemas or DTOs, generated API types, the OpenAPI spec, shared schema packages, MSW handlers |
 | `review-tests` | Any source change (to check coverage) or any test file |
@@ -46,6 +49,8 @@ Pick specialists from the file list:
 | `review-architecture` | New, moved, or renamed files; imports that cross a feature, app, or package boundary; barrel `index` files; workspace or path-alias config; any review of a whole path |
 | `review-dependencies` | Any `package.json`, a lockfile, `pnpm-workspace.yaml`, `.npmrc` |
 | `review-production` | Routes and app or server entry points, error boundaries and error pages, env files or env schema, build config (`vite`, `next`, `nuxt`, `tsconfig`, `turbo`, Dockerfile), CI workflows, DB migrations |
+
+MSW mock handlers and test fixtures are test code, not server handlers: on their own they route correctness, code-quality, tests, and api-contract, never security or performance.
 
 Docs-only change (`*.md`, comments only) → route nothing. Skip step 4 and give the orchestrator an empty crew.
 

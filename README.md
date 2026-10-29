@@ -43,7 +43,7 @@ Installed, it adds about 1k tokens to every session (agent and command descripti
 ## Use
 
 ```
-/review                 # diff vs default branch
+/review                 # your branch vs default branch, committed or not
 /review 128             # a PR number (uses gh)
 /review staged          # git diff --cached
 /review src/features/   # a path, reviewed whole
