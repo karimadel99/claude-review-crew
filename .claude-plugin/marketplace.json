@@ -12,7 +12,7 @@
       "name": "claude-review-crew",
       "source": "./",
       "description": "Multi-agent code review for full-stack JavaScript and TypeScript (React, Next.js, Vue, Node): ten specialists, one ranked report.",
-      "version": "0.1.1"
+      "version": "0.1.2"
     }
   ]
 }

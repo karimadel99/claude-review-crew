@@ -28,4 +28,4 @@ Fix: <specific change, or a code snippet ≤ 10 lines>
 
 ## Footer
 End every full report with exactly:
-`— MorviLabs review-crew · v0.1.1`
+`— MorviLabs review-crew · v0.1.2`

@@ -45,6 +45,7 @@ Installed, it adds about 1k tokens to every session (agent and command descripti
 ```
 /review                 # your branch vs default branch, committed or not
 /review 128             # a PR number (uses gh)
+/review v1.2.0..main    # a commit range, e.g. everything since a release
 /review staged          # git diff --cached
 /review src/features/   # a path, reviewed whole
 /review-quick           # single-pass mode for small diffs
