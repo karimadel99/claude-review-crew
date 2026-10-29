@@ -1,0 +1,18 @@
+{
+  "name": "morvilabs",
+  "owner": {
+    "name": "Karim Adel (MorviLabs)",
+    "email": "karim.adel9922@gmail.com"
+  },
+  "metadata": {
+    "description": "MorviLabs plugins for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "claude-review-crew",
+      "source": "./",
+      "description": "Multi-agent code review for full-stack JavaScript and TypeScript (React, Next.js, Vue, Node): ten specialists, one ranked report.",
+      "version": "0.1.0"
+    }
+  ]
+}
