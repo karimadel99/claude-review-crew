@@ -1,6 +1,6 @@
 {
   "name": "claude-review-crew",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Multi-agent code review for full-stack JavaScript and TypeScript (React, Next.js, Vue, Node) by MorviLabs: /review routes a diff to the specialist reviewers it needs (correctness, code quality, security, performance, API contract, tests, UX/a11y, architecture, dependencies, production readiness) and an orchestrator merges their findings into one ranked report. Optional Arabic + English summary.",
   "author": { "name": "Karim Adel (MorviLabs)", "url": "https://github.com/karimadel99" },
   "homepage": "https://github.com/karimadel99/claude-review-crew",
