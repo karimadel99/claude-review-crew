@@ -1,6 +1,6 @@
 ---
-description: 'Full multi-agent review of a diff, PR, or path. Usage: /review [path | PR number | "staged"]'
-argument-hint: "[path | PR# | staged]"
+description: 'Full multi-agent review of a diff, PR, commit range, or path. Usage: /review [path | PR number | base..head | "staged"]'
+argument-hint: "[path | PR# | base..head | staged]"
 ---
 Run a full MorviLabs review-crew review on: $ARGUMENTS (default: the current branch against the default branch).
 
@@ -10,6 +10,7 @@ You are the dispatcher. The specialists run as subagents, and a subagent cannot 
 | `$ARGUMENTS` | Diff command | File list |
 |---|---|---|
 | a PR number | `gh pr diff <n>` | `gh pr diff <n> --name-only` |
+| a commit range `<base>..<head>` (both sides pass `git rev-parse --verify`) | `git diff <base> <head>` | `git diff <base> <head> --name-only` |
 | `staged` | `git diff --cached` | `git diff --cached --name-only` |
 | a path | review the path as a whole | `git ls-files <path>` |
 | empty | `git diff <base>`: everything on this branch, committed or not | `git diff <base> --name-only`, plus untracked files from `git ls-files --others --exclude-standard` |

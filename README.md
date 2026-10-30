@@ -9,7 +9,10 @@
 
 A Claude Code plugin that runs a real code review the way a senior team does it: `/review` reads the diff and sends it to only the specialists the change needs, all in parallel; the orchestrator then dedupes their findings, ranks them by severity, and hands back one verdict. Built for full-stack JavaScript and TypeScript (React, Next.js, Vue, and Node APIs) by a tech lead who reviews React/TypeScript PRs daily. It detects your stack and adds framework-specific checks on top of the general ones. RTL layout checks run on every UI change; an Arabic summary is one setting away.
 
-<!-- DEMO GIF: ./docs/demo.gif -->
+<p align="center">
+  <img src="docs/demo.gif" width="800" alt="Terminal replay of /review on a commit range: nine specialist agents run in parallel, then the orchestrator merges 41 findings into 24 and prints an Arabic summary and the verdict REQUEST CHANGES." />
+</p>
+<p align="center"><sub>Replay of a real run on ResuForge (Next.js, 24 files): 9 specialists in 2:41, merge in 3:47. Time-compressed.</sub></p>
 
 ## Install
 
@@ -45,6 +48,7 @@ Installed, it adds about 1k tokens to every session (agent and command descripti
 ```
 /review                 # your branch vs default branch, committed or not
 /review 128             # a PR number (uses gh)
+/review v1.2.0..main    # a commit range, e.g. everything since a release
 /review staged          # git diff --cached
 /review src/features/   # a path, reviewed whole
 /review-quick           # single-pass mode for small diffs

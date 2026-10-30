@@ -46,7 +46,7 @@ Fix: guard with o.status?.startsWith(...) and add a "Draft" bucket.
 
 **Verdict: REQUEST CHANGES** — <one line naming the blocking findings>
 
-— MorviLabs review-crew · v0.1.1
+— MorviLabs review-crew · v0.1.2
 ```
 
 If `bilingual` is true, put `## ملخص` before `## Findings`: 3–5 bullets in Egyptian-professional Arabic (clear and direct, not MSA-stiff) that state the verdict and the blocking findings. Keep file paths, identifiers, and P0–P3 tags in English inside the Arabic text.
