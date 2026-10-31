@@ -13,9 +13,9 @@ You are the dispatcher. The specialists run as subagents, and a subagent cannot 
 | a commit range `<base>..<head>` (both sides pass `git rev-parse --verify`) | `git diff <base> <head>` | `git diff <base> <head> --name-only` |
 | `staged` | `git diff --cached` | `git diff --cached --name-only` |
 | a path | review the path as a whole | `git ls-files <path>` |
-| empty | `git diff <base>`: everything on this branch, committed or not | `git diff <base> --name-only`, plus untracked files from `git ls-files --others --exclude-standard` |
+| empty | `git diff <merge-base>`: everything on this branch, committed or not | `git diff <merge-base> --name-only`, plus untracked files from `git ls-files --others --exclude-standard` |
 
-`<base>` is `git merge-base origin/HEAD HEAD`; fall back to `origin/main`, then `main`. A branch with no commits yet still gets reviewed this way.
+`<merge-base>` is `git merge-base origin/HEAD HEAD`; fall back to `origin/main`, then `main`. A branch with no commits yet still gets reviewed this way.
 
 Keep the exact command you used. Specialists rerun it themselves; never paste the diff into their prompts. Untracked files are in no diff: list them under Files marked `(new, untracked)` so specialists read them whole.
 Name the target so the report says what was reviewed, e.g. `fix/x (committed + uncommitted vs origin/main)`.
@@ -59,12 +59,12 @@ Docs-only change (`*.md`, comments only) → route nothing. Skip step 4 and give
 Launch every selected specialist in ONE message as parallel subagent calls. Plugin agents carry the plugin prefix: `claude-review-crew:review-correctness`, `claude-review-crew:review-security`, and so on. Give each exactly this brief:
 
 ```
-Target: <branch, PR #, or path>
+Target: <branch, PR #, commit range, or path>
 Diff command: <the exact command from step 1>
 Files: <the file list>
 Stack: <the resolved stack list, or none>
 Config: bilingual=<…> openapi_spec=<…>
-Return findings in your output format, or your exact no-findings line.
+Return findings in your output format, or your exact no-findings line. Use repo-relative paths with forward slashes, never absolute paths.
 ```
 
 Wait for all of them. A specialist that errors → retry once, then list it as `<name> (failed)` under Skipped.
@@ -72,6 +72,7 @@ Wait for all of them. A specialist that errors → retry once, then list it as `
 ## 5. Merge and report
 Launch `claude-review-crew:review-orchestrator` with:
 - Target
+- Repo root: from `git rev-parse --show-toplevel`
 - Stack: the resolved stack list
 - Crew: the specialists that ran
 - Skipped: specialists not routed, plus any that failed

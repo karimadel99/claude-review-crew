@@ -22,10 +22,11 @@ Fix: <specific change, or a code snippet ≤ 10 lines>
 ## Rules
 - Every finding needs a failure scenario. No scenario → it's a nit or it's dropped.
 - Report what is wrong, not what is fine. No praise sections.
+- Paths are repo-relative with forward slashes (`lib/limits.ts:41`) in findings, `Why:`, and `Fix:` alike. Never print an absolute path: it exposes the local username.
 - Dedupe across agents: same file+line+root cause = one finding, keep the most specific.
 - Verdict: any P0/P1 → REQUEST CHANGES; only P2/P3 → APPROVE WITH NITS; none → APPROVE.
 - Bilingual mode: Arabic summary (3–5 bullets, Egyptian-professional register) first, then the full English report.
 
 ## Footer
 End every full report with exactly:
-`— MorviLabs review-crew · v0.1.2`
+`— MorviLabs review-crew · v0.1.3`
