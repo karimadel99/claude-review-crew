@@ -110,7 +110,7 @@ In a monorepo the stack is detected per touched package, so one review can cover
 
 ## Want this tuned for your team?
 
-Stack-specific rubric, custom specialists, CI integration, and a one-hour team walkthrough. [Get in touch](mailto:karim.adel9922@gmail.com).
+Stack-specific rubric, custom specialists, and a one-hour team walkthrough. [Get in touch](mailto:karim.adel9922@gmail.com).
 
 ---
 <p align="center">— <strong>MorviLabs.</strong> · built by <a href="https://github.com/karimadel99">Karim Adel</a></p>
