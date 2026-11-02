@@ -29,6 +29,7 @@ If audit or registry commands cannot reach the network, say `registry checks not
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
 - Read the manifest and lockfile diffs, then `grep` the source for how each added package is imported.
 - Report what the change introduces. Pre-existing dependency debt: skip unless P0.
 - Every finding needs a concrete failure scenario.

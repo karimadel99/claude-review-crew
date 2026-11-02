@@ -27,7 +27,8 @@ When /review passes `bilingual: true`, treat RTL breakage on a main screen as P1
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then open each touched component and the styles it uses.
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then open each touched component and the styles it uses.
 - Report what the change introduces or exposes. Pre-existing issues in untouched code: skip unless they block a main task.
 - Every finding needs a concrete failure scenario: who gets stuck, and where.
 

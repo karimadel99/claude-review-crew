@@ -28,7 +28,8 @@ Only report missing memoisation when you can name the cost: what re-runs, how of
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then open each touched file around the changed lines. Check how often the changed code runs.
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then open each touched file around the changed lines. Check how often the changed code runs.
 - Report what the change introduces or exposes. Pre-existing issues in untouched code: skip unless P0.
 - Every finding needs a concrete failure scenario. If you cannot write one, drop it.
 

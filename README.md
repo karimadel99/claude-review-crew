@@ -7,7 +7,7 @@
 <h1 align="center">claude-review-crew</h1>
 <p align="center"><em>Ten specialists. One ranked report. Every PR.</em></p>
 
-A Claude Code plugin that runs a real code review the way a senior team does it: `/review` reads the diff and sends it to only the specialists the change needs, all in parallel; the orchestrator then dedupes their findings, ranks them by severity, and hands back one verdict. Built for full-stack JavaScript and TypeScript (React, Next.js, Vue, and Node APIs) by a tech lead who reviews React/TypeScript PRs daily. It detects your stack and adds framework-specific checks on top of the general ones. RTL layout checks run on every UI change; an Arabic summary is one setting away.
+A Claude Code plugin that runs a real code review the way a senior team does it: `/review` reads the diff and sends it to only the specialists the change needs, all in parallel, each reading only the files that routed it; the orchestrator then dedupes their findings, ranks them by severity, and hands back one verdict. Built for full-stack JavaScript and TypeScript (React, Next.js, Vue, and Node APIs) by a tech lead who reviews React/TypeScript PRs daily. It detects your stack and adds framework-specific checks on top of the general ones. RTL layout checks run on every UI change; an Arabic summary is one setting away.
 
 <p align="center">
   <img src="docs/demo.gif" width="800" alt="Terminal replay of /review on a commit range: nine specialist agents run in parallel, then the orchestrator merges 41 findings into 24 and prints an Arabic summary and the verdict REQUEST CHANGES." />
@@ -55,6 +55,10 @@ Installed, it adds about 1k tokens to every session (agent and command descripti
 ```
 
 If something else already owns `/review` in your setup, use the full name: `/claude-review-crew:review`.
+
+## Cost
+
+A full run is not cheap: the replay above (24 files, 9 specialists) used about 640k tokens on v0.1.3, when every specialist read the whole diff. Since v0.1.4 each specialist is briefed with only the files that routed it, so on a mixed diff the narrow specialists (security, api-contract, ux-a11y, dependencies, production) read a fraction of the change; correctness, code-quality, and tests still read every source file. The specialists run on Sonnet, the orchestrator on your session's model. For a diff under about 200 lines, `/review-quick` is a single pass with no fan-out.
 
 ## What the crew does
 

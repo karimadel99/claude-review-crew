@@ -27,7 +27,8 @@ Do not ask for coverage numbers. Ask for the specific test that would catch a sp
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then find the tests for each touched source file (same name, `__tests__/`, `*.test.*`, `*.spec.*`, `e2e/`).
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then find the tests for each touched source file (same name, `__tests__/`, `*.test.*`, `*.spec.*`, `e2e/`).
 - Report what the change introduces or exposes. Pre-existing gaps in untouched code: skip.
 - Every finding needs a concrete failure scenario: the regression that would get through.
 

@@ -40,7 +40,8 @@ None found → reply exactly `api-contract: skipped — no OpenAPI spec, generat
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then open the contract for every endpoint the change calls or serves.
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then open the contract for every endpoint the change calls or serves.
 - Report what the change introduces or exposes. Pre-existing drift in untouched code: skip unless P0.
 - Every finding needs a concrete failure scenario. If you cannot write one, drop it.
 

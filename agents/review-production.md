@@ -26,7 +26,8 @@ Look for:
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then the entry points, env handling, and CI config the change relies on.
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then the entry points, env handling, and CI config the change relies on.
 - Report what the change introduces or exposes. Pre-existing gaps in untouched code: skip unless P0.
 - Every finding needs a concrete failure scenario: what happens in production, and how anyone finds out.
 
