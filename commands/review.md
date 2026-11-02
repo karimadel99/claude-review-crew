@@ -53,6 +53,8 @@ Pick specialists from the file list:
 
 MSW mock handlers and test fixtures are test code, not server handlers: on their own they route correctness, code-quality, tests, and api-contract, never security or performance.
 
+Each routed specialist gets its own file list: the touched files that matched its row, nothing else. `review-correctness`, `review-code-quality`, and `review-tests` get every source file (`review-tests` also every test file). On a whole-path review every routed specialist gets the full list. Untracked files keep their `(new, untracked)` mark in every list they land in. A specialist whose list would be empty is not routed. The diff command is the same for everyone: specialists scope it to their list themselves.
+
 Docs-only change (`*.md`, comments only) → route nothing. Skip step 4 and give the orchestrator an empty crew.
 
 ## 4. Dispatch
@@ -61,10 +63,10 @@ Launch every selected specialist in ONE message as parallel subagent calls. Plug
 ```
 Target: <branch, PR #, commit range, or path>
 Diff command: <the exact command from step 1>
-Files: <the file list>
+Files: <this specialist's file list from step 3, not the whole change set>
 Stack: <the resolved stack list, or none>
 Config: bilingual=<…> openapi_spec=<…>
-Return findings in your output format, or your exact no-findings line. Use repo-relative paths with forward slashes, never absolute paths.
+Review only the files listed; other touched files are context. Return findings in your output format, or your exact no-findings line. Use repo-relative paths with forward slashes, never absolute paths.
 ```
 
 Wait for all of them. A specialist that errors → retry once, then list it as `<name> (failed)` under Skipped.

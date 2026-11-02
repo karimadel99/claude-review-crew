@@ -29,7 +29,8 @@ Look for:
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then the import graph around each touched file (`grep` for what imports it and what it imports).
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then the import graph around each touched file (`grep` for what imports it and what it imports).
 - Report what the change introduces or makes worse. Pre-existing structure problems in untouched code: skip.
 - Every finding needs a concrete failure scenario: what breaks, or what the next change will have to do twice.
 

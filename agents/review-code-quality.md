@@ -28,7 +28,8 @@ Style a formatter or linter would catch is not a finding.
 Out of scope: anything outside the lists above — the rest of the crew covers it.
 
 ## How to review
-- Read the diff, then nearby code to learn the repo's conventions. Judge against those conventions.
+- Scope: review only the files in your brief. Run the diff command for those files alone (`-- <files>` on a git command; for `gh pr diff`, read only their hunks). Other touched files are context: open them to follow a call, never to report on them.
+- Then nearby code to learn the repo's conventions. Judge against those conventions.
 - Report what the change introduces. Pre-existing quality issues in untouched code: skip.
 - Every finding needs a concrete failure scenario: the realistic next change that goes wrong because of this code.
 
